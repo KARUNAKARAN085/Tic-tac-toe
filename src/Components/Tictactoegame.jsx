@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Confetti from "react-confetti";
-import "./TicTacToe.css";
+import "./Tictactoegame.css";
 
 const TicTacToe = () => {
   const [board, setBoard] = useState(Array(9).fill(null));
