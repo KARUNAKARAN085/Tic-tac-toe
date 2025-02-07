@@ -1,0 +1,12 @@
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 300px;
+    margin: auto;
+  }
+  
+  .cell {
+    width: 80px;
+    height: 80px;
+  }
+  
