@@ -7,6 +7,7 @@ const TicTacToe = () => {
   const [isXNext, setIsXNext] = useState(true);
   const [winner, setWinner] = useState(null);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [isDraw, setIsDraw] = useState(false);
   
   useEffect(() => {
     if (winner) {
@@ -33,12 +34,17 @@ const TicTacToe = () => {
   };
 
   const handleClick = (index) => {
-    if (board[index] || winner) return;
+    if (board[index] || winner || isDraw) return;
     const newBoard = board.slice();
     newBoard[index] = isXNext ? "X" : "O";
     setBoard(newBoard);
+    const gameWinner = checkWinner(newBoard);
+    if (gameWinner) {
+      setWinner(gameWinner);
+    } else if (!newBoard.includes(null)) {
+      setIsDraw(true);
+    }
     setIsXNext(!isXNext);
-    setWinner(checkWinner(newBoard));
   };
 
   const resetGame = () => {
@@ -46,6 +52,7 @@ const TicTacToe = () => {
     setIsXNext(true);
     setWinner(null);
     setShowConfetti(false);
+    setIsDraw(false);
   };
 
   return (
@@ -64,7 +71,7 @@ const TicTacToe = () => {
         ))}
       </div>
       <h2 className="mt-4 mb-4">
-        {winner ? `🎉 Winner: ${winner}! 🎉` : `Next Player: ${isXNext ? "X" : "O"}`}
+        {winner ? `🎉 Winner: ${winner}! 🎉` : isDraw ? "It's a Draw! 🤝" : `Next Player: ${isXNext ? "X" : "O"}`}
       </h2>
       <button className="btn btn-danger mt-3" onClick={resetGame}>Reset Game</button>
     </div>
@@ -72,3 +79,4 @@ const TicTacToe = () => {
 };
 
 export default TicTacToe;
+
