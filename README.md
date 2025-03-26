@@ -6,3 +6,5 @@
 - Win detection with celebration.
 - Responsive design for all screen sizes.
 - Reset button to restart the game.
+
+Published in Netlify - https://tictactoegamerk.netlify.app/
